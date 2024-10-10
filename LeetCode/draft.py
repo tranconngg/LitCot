@@ -247,4 +247,57 @@
 #             if n <=0:
 #                 return True
 # print(flowerPlace([1,0,1,0,1,0,1],0))
-    
+# import string
+# # nếu dùng nối chuỗi + sẽ chậm và tốn bộ nhớ vì sau mỗi lần lặp nó sẽ 
+# # chép lại toàn bộ dữ liệu cũ và nối với chuỗi mới
+# # tránh dùng khi số lượng chuỗi nhiều đặc biệt là trong vòng lặp
+# def Reveser(s):
+#     nguyenam =['e','u','a','i','o']
+#     stack_nguyenam = []
+#     for i in range(len(s)):
+#         if s[i].lower() in nguyenam:
+#             stack_nguyenam.append(s[i])
+#     new_s =''
+#     for i in range (len(s)):
+#         if s[i].lower() in nguyenam:
+#             new_s += stack_nguyenam.pop()
+#         else:
+#             new_s += s[i]
+#     return new_s
+# print(Reveser("hello aim"))
+# print(Reveser("Ronaldo Messi"))
+
+# # dùng join sẽ tốt hơn 
+# def Reveser(s):
+#     nguyenam =['e','u','a','i','o']
+#     stack_nguyenam = []
+#     for i in range(len(s)):
+#         if s[i].lower() in nguyenam:
+#             stack_nguyenam.append(s[i])
+#     new_s = list(s)
+#     for i in range (len(s)):
+#         if s[i].lower() in nguyenam:
+#             new_s[i] = stack_nguyenam.pop()
+#     return ''.join(new_s)
+# print(Reveser("hello aim"))
+# print(Reveser("Ronaldo Messi"))
+# words = ["Messi", "is", "goat"]
+# print(' '.join(words))
+
+# sentence = "I love programming in Python"
+# sen_list=sentence.split(" ")
+# sen_list = sen_list[::-1]
+# print(' '.join(sen_list))
+# # print(sentence[::-1])
+
+# def tansuattu(a):
+#     dict_a ={}
+#     for char in a:
+#         if char in dict_a:
+#              dict_a[char]+=1
+#         else:
+#             dict_a[char]=1
+#     return dict_a
+# print(tansuattu("hello"))
+
+
