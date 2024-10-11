@@ -299,5 +299,142 @@
 #             dict_a[char]=1
 #     return dict_a
 # print(tansuattu("hello"))
+# def doancon_lonnhat(a, k):
+#         # if k <= 1:  
+#         # return 0
 
+#         product = 1
+#         left = 0
+#         count = 0
+#         list_t=[]
 
+#         for right in range(len(a)):
+#             product *= a[right] 
+
+#             while product >= k and left <= right:
+#                 product /= a[left]
+#                 left += 1
+# # xuống tới đây thì đoạn con đã thoả mãn
+# #  khi vòng while trên đã xử lý trường hợp k thoả mãn
+#             count += right - left + 1
+#             for i in range(left,right+1):
+#                 list_t.append([a[i:right+1]])
+
+#         return list_t
+# print(doancon_lonnhat([10,5,2,6],100))
+            
+# def subarraysDivByK(nums, k):
+#         """
+#         :type nums: List[int]
+#         :type k: int
+#         :rtype: int
+#         """
+#         left = 0
+#         max_length = 0
+#         sum = 0
+#         list_t =[]
+#         for right in range(0,len(nums)):
+#             sum += nums[right]
+#             while (sum % k != 0) and left <= right:
+#                 sum -= nums[left]
+#                 left+=1
+#             max_length = max_length + (right-left +1)
+#             for i in range(left, right+1):
+#                 list_t.append([nums[i:right+1]])
+#         return list_t
+
+# print(subarraysDivByK([-5,5,3,2],5))
+# def reverseWords(s):
+#         """
+#         :type s: str
+#         :rtype: str
+#         """
+#         s=s.strip()
+#         list_s = s.split()
+#         return ' '.join(list_s[::-1])
+# print(reverseWords("    hello world"))
+
+# ===========SOLUTION 1==================
+# def moveZeroes(nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: None Do not return anything, modify nums in-place instead.
+#         """
+#         cnt = 0
+#         for i in range(0,len(nums)-2):
+#             if nums[i] == 0:
+#                 zero = nums.pop(i)
+#                 cnt +=1
+#         list_zero = [0] * cnt
+#         return nums + list_zero
+
+# print(moveZeroes([0,1,0,3,12]))
+
+# ========== solution 2=========
+#  def moveZeroes(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: None Do not return anything, modify nums in-place instead.
+#         """
+#         right=1
+#         left=0
+#         for right in range(0,len(nums)):
+#             if nums[right] != 0:
+#                 nums[left],nums[right]=nums[right],nums[left]
+#                 left +=1
+            
+#         return nums
+        
+# ===================== Hai con trỏ =====================
+# Tìm tất cả các cặp số trong mảng có tổng bằng một giá trị
+# Cho một mảng đã được sắp xếp(tự xắp xếp ê), tìm hai số trong mảng có tổng bằng một giá trị cụ thể
+
+# def find_num(a, target):
+#     left = 0
+#     right = len(a)-1
+#     a=sorted(a)
+#     list_cap =[]
+#     while left < right:
+#         if a[left] + a[right] == target:
+#             list_cap.append([a[left],a[right]])
+#             left+=1
+#         elif a[left] + a[right] < target:
+#             left +=1
+#         else:
+#             right -=1
+
+#     conver_tople=map(lambda x:tuple(x),list_cap)
+#     return set(conver_tople)
+# print(find_num([1,5,2,6,4,0,0,3,6,2,5,8,4],10))
+# check palindrome
+# def check_palindrome(a):
+#     left = 0
+#     right = len(a)-1
+#     while left < right:
+#         if a[left] != a[right]:
+#             return False
+#         else:
+#             left +=1
+#             right -=1
+#     return True
+
+# print(check_palindrome("123454321"))
+# check độ dài chuỗi con nhỏ hơn hoặc bằng một giá trị
+# def check_maxsub(a, target):
+#     left = 0
+#     current_sum = 0
+#     max_length = 0
+
+#     for right in range(len(a)):
+#         current_sum += a[right]
+
+#         # Khi tổng lớn hơn target, di chuyển left để giảm tổng
+#         while current_sum > target:
+#             current_sum -= a[left]
+#             left += 1
+
+#         # Cập nhật độ dài của dãy con
+#         max_length = max(max_length, right - left + 1)
+
+#     return max_length
+# print(check_maxsub([1, 2, 3, 4, 5],8))
