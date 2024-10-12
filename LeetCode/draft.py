@@ -432,9 +432,135 @@
 #         while current_sum > target:
 #             current_sum -= a[left]
 #             left += 1
+#  abc axbhc
 
 #         # Cập nhật độ dài của dãy con
 #         max_length = max(max_length, right - left + 1)
 
 #     return max_length
 # print(check_maxsub([1, 2, 3, 4, 5],8))
+# set_=list("hello")
+# print(set_)
+# if "h" in set_:
+#         print("có")
+
+
+# def isSubsequence(s, t):
+#     i,j =0,0
+#     while j < len(s) and i < len(t):
+#             if (s[j]==t[i]):
+#                 j+=1
+#             i+=1
+#     return j == len(s)
+
+
+# print(isSubsequence("ole","hellol"))
+# def maxOperations(nums, k):
+#         """
+#         :type nums: List[int]
+#         :type k: int
+#         :rtype: int
+#         """
+#         nums=sorted(nums)
+#         left=0
+#         right = len(nums)-1
+#         cnt =0
+#         while left <right:
+#             if nums[left]+nums[right] ==k:
+#                 left +=1
+#                 right -=1
+#                 cnt +=1
+#             elif nums[left]+nums[right] <k:
+#                 left +=1
+#             else:
+#                 right -=1
+#         return cnt
+
+
+# print(maxOperations([4,4,1,3,1,3,2,2,5,5,1,5,2,1,2,3,5,4],2))
+# p = [4,4,1,3,1,3,2,2,5,5,1,5,2,1,2,3,5,4]
+# def product_of_array_excepted_self(a):
+#     tich_left = [1] * len(a)
+#     tich_right = [1] * len(a)
+#     answer = [1] * len(a)
+#     #  hoặc tạo list rỗng rồi sau append cũng được
+#     left_tich=1
+#     for i in range(len(a)):
+#         # lượt đầu tiên i = 0 thì không có phần tử nào đứng trước phần tử i = 0 của mảng nums
+#         # nên mảng tich_left sẽ lấy giá trị left_tich ban đầu là 1,
+#         # left_tich thứ i là tích của tất cả các phần tử đằng sau phần tử i của mảng nums (tích cộng dồn cho tới phần tử i-1 của mảng nums)
+
+#         # append tích của phần tử tại vòng lặp trước, phần tử i tại tich_left sẽ lưu tích dồn đến i - 1 của nums(vòng lặp trước)
+#         tich_left[i]=left_tich
+
+#         # xong rồi mới tính tích cho phần tử tại vòng lặp này rồi sang vòng lặp sau mới append
+#         left_tich*=a[i] 
+#         # nhân xong để đó qua vòng lặp mới thì mới cho vào mảng,
+#         # đảm bảo mảng chứa tích của các phần tử trước i
+#     right_tich = 1
+#     for i in range(len(a)-1, -1, -1):
+#         tich_right[i] = right_tich
+#         right_tich *= a[i]
+    
+#     for i in range(len(a)):
+#         # con trỏ để mảng tich_right chạy ngược
+#         # k = len(a) - i -1 
+#         answer[i] = tich_left[i] * tich_right[i]
+#     return answer
+# print(product_of_array_excepted_self([1,2,3,4]))
+
+# def increasingTriplet(self, nums):
+#         if len(nums) < 3:
+#            return False
+#         # khởi tạo chúng bằng dương vc
+#         min = float('inf')
+#         tb = float('inf')
+    
+#         for num in nums:
+#             if num <= min:
+#                 min = num
+#             elif num <= tb: 
+#                 min = num
+#             else:
+#                 return True
+
+#         return False
+# def compress(chars):
+#     left, right = 0,0
+#     cnt = 0
+#     list_chars=[]
+#     while right < len(chars):
+#         if chars[right] != chars[left]:
+#             list_chars.append(chars[left])
+#             if cnt >=2:
+#                 list_chars.append(cnt)
+#             left = right
+#             cnt =0
+#         if(right == len(chars)-1 and cnt >=1):
+#             cnt +=1
+#             list_chars.append(chars[right])
+#             list_chars.append(cnt)
+#         cnt+=1
+#         right +=1
+#     s="".join(str(item) for item in list_chars)
+#     return list(s)
+# print(compress("aabbccc"))
+
+def maxArea(height):
+        left=0
+        right = len(height)-1
+        dientich, chieucao, chieurong= 0,0,0
+        max_dientich=0
+        while left < right:
+            chieucao  = min(height[left], height[right])
+            chieurong = right - left
+            dientich = chieucao * chieurong
+            if dientich > max_dientich:
+                  max_dientich = dientich
+            if height[left] < height[right]:
+                  left += 1
+            else:
+                  right -=1
+        return max_dientich
+print(maxArea([1,8,6,2,5,4,8,3,7]))
+
