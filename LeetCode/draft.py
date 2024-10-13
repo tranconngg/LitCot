@@ -546,21 +546,170 @@
 #     return list(s)
 # print(compress("aabbccc"))
 
-def maxArea(height):
-        left=0
-        right = len(height)-1
-        dientich, chieucao, chieurong= 0,0,0
-        max_dientich=0
-        while left < right:
-            chieucao  = min(height[left], height[right])
-            chieurong = right - left
-            dientich = chieucao * chieurong
-            if dientich > max_dientich:
-                  max_dientich = dientich
-            if height[left] < height[right]:
-                  left += 1
-            else:
-                  right -=1
-        return max_dientich
-print(maxArea([1,8,6,2,5,4,8,3,7]))
+# def maxArea(height):
+#         left=0
+#         right = len(height)-1
+#         dientich, chieucao, chieurong= 0,0,0
+#         max_dientich=0
+#         while left < right:
+#             chieucao  = min(height[left], height[right])
+#             chieurong = right - left
+#             dientich = chieucao * chieurong
+#             if dientich > max_dientich:
+#                   max_dientich = dientich
+#             if height[left] < height[right]:
+#                   left += 1
+#             else:
+#                   right -=1
+#         return max_dientich
+# print(maxArea([1,8,6,2,5,4,8,3,7]))
 
+# def findMaxAverage(nums, k):
+#        left, right = 0,0
+#        sum = 0
+#        max_tb = -99999999999999
+#        while right < len(nums):
+#               sum+=nums[right]
+#               if right -left +1 == k:
+#                     tb = sum / k
+#                     if tb > max_tb:
+#                            max_tb=tb
+#                     sum -= nums[left]
+#                     left +=1
+#               right +=1
+#        return max_tb
+# print(findMaxAverage([-1,-2,-3,-4,-6,-8],5))
+# def maxVowels(s, k):
+#         """
+#         :type s: str
+#         :type k: int
+#         :rtype: int
+#         """
+#         left, right = 0,0
+#         max_vowels = 0
+#         cnt = 0
+#         vowels = ['u','e','o','a','i']
+#         while right < len(s):
+#                 if s[right] in vowels:
+#                         cnt +=1
+#                 if right - left +1 == k:
+#                         if cnt > max_vowels:
+#                                 max_vowels = cnt
+#                         if s[left] in vowels:
+#                                 cnt -=1
+#                         left +=1
+
+#                 right +=1
+#         return max_vowels
+# print(maxVowels("aeiou",2))
+                
+# def findDifference(nums1, nums2):
+#         """
+#         :type nums1: List[int]
+#         :type nums2: List[int]
+#         :rtype: List[List[int]]
+#         """
+#         set_s1=set(nums1)
+#         set_s2=set(nums2)
+#         return [list(set_s1-set_s2),list(set_s2-set_s1)]
+# print(findDifference([1,2,3,3],[1,1,2,2]))
+        
+# def uniqueOccurrences(arr):
+#         dict_arr={}
+#         for i in range(len(arr)):
+#             if arr[i] not in dict_arr:
+#                   dict_arr[arr[i]]=1
+#             else:
+#                 keyy=dict_arr.get(arr[i])
+#                 keyy +=1
+#                 dict_arr[arr[i]]=keyy
+
+#         val_unique = dict_arr.values()
+#         n = len(val_unique)
+#         return n == len(set(val_unique))
+# print(uniqueOccurrences([1,2]))
+        
+# sol1
+# def stack_remove_star(strs):
+#     st_str=list(strs)
+#     s=''
+#     cnt =0
+#     for _ in range(len(strs)):
+#         s_pop=st_str.pop()
+#         if s_pop != '*':
+#             if cnt < 1:
+#                s += s_pop
+#             else:
+#                 cnt -=1
+#         else:
+#             cnt +=1
+#     return s[::-1]
+# print(stack_remove_star("leet**cod*e"))
+
+# # sol2
+# def stack_remove_star2(strs):
+#     st = []
+#     for c in strs:
+#         if c != "*":
+#            st.append(c)
+#         else:
+#             st.pop()
+#     return ''.join(st)
+# print(stack_remove_star("abce****"))
+
+# def va_cham_tieu_hanh_tinh(a):
+#     st = []
+#     for c in a:
+#         if len(st) >= 1:
+#             check = st[-1]
+#         else:
+#            check = 99999999999999
+#         if c == check or len(st)==0:
+#             st.append(c)
+#         elif c > check:
+#             if abs(c) == abs(check):
+#                 st.pop()
+#             elif c*check > 0:
+#                 st.append(c)
+#             else:
+#                 st.pop()
+#                 st.append(c)
+#         elif c < check:
+#             if abs(c) == abs(check):
+#                 st.pop()
+#             elif abs(c) > abs(check):
+#                 st.pop()
+#             elif c*check >0:
+#                 st.append(c)
+#     return st
+# print(va_cham_tieu_hanh_tinh([10,2,-5]))
+
+# chua tao file
+
+# def largestAltitude(gain):
+#       max_prefix=-9999999999
+#       prefix = 0
+#       for i in range(len(gain)):
+#             if prefix >max_prefix:
+#                   max_prefix=prefix
+#             prefix += gain[i]
+            
+#       return max_prefix
+# print(largestAltitude([-5,1,5,0,-7]))
+def pivotIndex(nums):
+        sumleft=[0]*len(nums)
+        sumright=[0]*len(nums)
+        left, right=0,0
+        for i in range(len(nums)):
+                sumleft[i]=left
+                left += nums[i]
+        for i in range(len(nums)-1, -1, -1):
+                sumright[i]=right
+                right += nums[i]
+        for i in range(len(sumleft)):
+                if sumleft[i] == sumright[i]:
+                        return i
+        return -1
+
+print(pivotIndex([1,7,3,6,5,6]))
+            
